@@ -40,3 +40,13 @@ passport.use(strategy);
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+// used to support login sessions. passport serializes
+// and deserializes user instances to and from the session
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
