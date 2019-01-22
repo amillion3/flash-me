@@ -5,6 +5,11 @@ dotenv.config();
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 
+const userInViews = require('./lib/middleware/userInViews');
+const authRouter = require('./routes/auth');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+
 // config express-session here
 const sess = {
   secret: 'VR46',
@@ -50,3 +55,8 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
   done(null, user);
 });
+
+app.use(userInViews());
+app.use('/', authRouter);
+app.use('/', indexRouter);
+app.use('/', usersRouter);
