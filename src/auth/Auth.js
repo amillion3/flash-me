@@ -1,21 +1,19 @@
-import auth0 from 'auth0-js';
 import history from '../history';
+import auth0 from 'auth0-js';
+import { AUTH_CONFIG } from './auth0-variables';
+
 export default class Auth {
   accessToken;
   idToken;
   expiresAt;
 
   auth0 = new auth0.WebAuth({
-    domain: 'andymillion.auth0.com',
-    clientID: '2VTCUEIRW5VKyGf5CzKn27FHs7ojH30n',
-    redirectUri: 'http://localhost:3000/callback',
+    domain: AUTH_CONFIG.domain,
+    clientID: AUTH_CONFIG.clientId,
+    redirectUri: AUTH_CONFIG.callbackUrl,
     responseType: 'token id_token',
     scope: 'openid'
   });
-
-  login() {
-    this.auth0.authorize();
-  };
 
   constructor() {
     this.login = this.login.bind(this);
@@ -25,7 +23,11 @@ export default class Auth {
     this.getAccessToken = this.getAccessToken.bind(this);
     this.getIdToken = this.getIdToken.bind(this);
     this.renewSession = this.renewSession.bind(this);
-  };
+  }
+
+  login() {
+    this.auth0.authorize();
+  }
 
   handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
@@ -34,32 +36,32 @@ export default class Auth {
       } else if (err) {
         history.replace('/home');
         console.log(err);
-        alert(`Error: ${err.error}.`);
-      };
+        alert(`Error: ${err.error}. Check the console for further details.`);
+      }
     });
   }
 
   getAccessToken() {
     return this.accessToken;
-  };
+  }
 
   getIdToken() {
     return this.idToken;
-  };
+  }
 
   setSession(authResult) {
-    // Set `isLoggedIn` flag in localStorage
+    // Set isLoggedIn flag in localStorage
     localStorage.setItem('isLoggedIn', 'true');
 
     // Set the time that the access token will expire at
-    let expiresAt = (authResult.expiresIn * 1200) + new Date().getTime();
+    let expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
     this.accessToken = authResult.accessToken;
     this.idToken = authResult.idToken;
     this.expiresAt = expiresAt;
 
-    // redirect to the home route
+    // navigate to the home route
     history.replace('/home');
-  };
+  }
 
   renewSession() {
     this.auth0.checkSession({}, (err, authResult) => {
@@ -74,22 +76,22 @@ export default class Auth {
   }
 
   logout() {
-    // Remove tokens and expiration time
+    // Remove tokens and expiry time
     this.accessToken = null;
     this.idToken = null;
     this.expiresAt = 0;
 
-    // Remove `isLoggedIn` flag from localStorage
+    // Remove isLoggedIn flag from localStorage
     localStorage.removeItem('isLoggedIn');
 
-    // redirect to the home route
+    // navigate to the home route
     history.replace('/home');
-  };
+  }
 
   isAuthenticated() {
     // Check whether the current time is past the
-    // access token's expiration time
+    // access token's expiry time
     let expiresAt = this.expiresAt;
     return new Date().getTime() < expiresAt;
-  };
+  }
 }

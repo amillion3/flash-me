@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import { Navbar, Button } from 'react-bootstrap';
-import Auth from './auth/Auth.js';
-
 import './App.scss';
-
-const auth = new Auth();
-auth.login();
 
 class App extends Component {
   goTo(route) {
-    this.props.history.replace(`/${route}`);
+    this.props.history.replace(`/${route}`)
   }
 
   login() {
@@ -22,7 +17,7 @@ class App extends Component {
 
   componentDidMount() {
     const { renewSession } = this.props.auth;
-    // If user is logged in, renew the session
+
     if (localStorage.getItem('isLoggedIn') === 'true') {
       renewSession();
     }
@@ -48,6 +43,7 @@ class App extends Component {
             {
               !isAuthenticated() && (
                   <Button
+                    id="qsLoginBtn"
                     bsStyle="primary"
                     className="btn-margin"
                     onClick={this.login.bind(this)}
@@ -59,6 +55,7 @@ class App extends Component {
             {
               isAuthenticated() && (
                   <Button
+                    id="qsLogoutBtn"
                     bsStyle="primary"
                     className="btn-margin"
                     onClick={this.logout.bind(this)}
