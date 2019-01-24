@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('decks', {
+  const Deck = sequelize.define('decks', {
     deckid: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
@@ -39,4 +39,6 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     tableName: 'decks'
   });
+
+  return Deck;
 };

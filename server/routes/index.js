@@ -1,4 +1,5 @@
-const decksController = require('../controllers').decks;
+// import { Deck as decksController } from '../controllers';
+const decksController = require('../controllers').Deck;
 
 module.exports = app => {
   app.get('/api', (req, res) => res.status(200).send({

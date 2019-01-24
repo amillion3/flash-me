@@ -1,4 +1,4 @@
-const Deck = require('../models').decks;
+const Deck = require('../models').Deck;
 
 module.exports = {
   create(req, res) {
