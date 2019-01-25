@@ -10,7 +10,7 @@ const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '12D@tabases21',
-  database: 'FlashMe',
+  database: 'flashme',
   port: 3306,
 })
 
