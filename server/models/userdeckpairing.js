@@ -8,12 +8,10 @@ module.exports = function(sequelize, DataTypes) {
     userid: {
       type: DataTypes.INTEGER(11),
       allowNull: true,
-      // defaultValue: '0'
     },
     deckid: {
       type: DataTypes.INTEGER(11),
       allowNull: true,
-      // defaultValue: '0'
     }
   }, {
     timestamps: false,

@@ -24,21 +24,20 @@ module.exports = (app, db) => {
   // POST single deck
   app.post('/decks', (req, res) => {
     const name = req.body.name;
-    const category = req.body.name;
-    const publicdeck = req.body.deck;
+    const category = req.body.category;
+    const publicdeck = req.body.publicdeck;
     const deckcreatorid = req.body.deckcreatorid;
     const datecreated = moment();
     const datelastmodified = datecreated;
-    console.log("DATE CREATED",datecreated);
 
-    db.userdeckpairing.create({
-      userdeckpairingid: 0,
-      userid: deckcreatorid,
-      deckid: 0,
-    })
-      .then(newPairing => {
-        res.json(newPairing);
-      })
+    // db.userdeckpairing.create({
+    //   userdeckpairingid: 0,
+    //   userid: deckcreatorid,
+    //   deckid: 0,
+    // })
+    //   .then(newPairing => {
+    //     res.json(newPairing);
+    //   })
 
     db.decks.create({
       name,

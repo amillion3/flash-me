@@ -92,10 +92,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"id\": 1,\n        \"title\": \"Get Milk, updated\",\n        \"createdAt\": \"2019-01-13T22:53:18.000\",\n        \"updatedAt\": \"2019-01-13T22:53:18.000\"\n    }"
+							"raw": "    {\n        \"name\": \"hi\",\n        \"category\": \"yooooo\",\n        \"publicdeck\": 1,\n        \"deckcreatorid\": \"1\"\n    }"
 						},
 						"url": {
-							"raw": "http://localhost:8000/decks/?name=\"Saturday1\"&category=\"Technical\"&publicdeck=false&deckcreatorid=\"1\"",
+							"raw": "http://localhost:8000/decks/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -104,24 +104,6 @@
 							"path": [
 								"decks",
 								""
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": "\"Saturday1\""
-								},
-								{
-									"key": "category",
-									"value": "\"Technical\""
-								},
-								{
-									"key": "publicdeck",
-									"value": "false"
-								},
-								{
-									"key": "deckcreatorid",
-									"value": "\"1\""
-								}
 							]
 						},
 						"description": "POST Deck (Single)"
@@ -204,6 +186,171 @@
 							"path": [
 								"decks",
 								"2"
+							]
+						},
+						"description": "PATCH Deck (Single)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UserDeckPairing",
+			"item": [
+				{
+					"name": "GET UserDeckPairing (Single)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/userdeckpairing/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"userdeckpairing",
+								"2"
+							]
+						},
+						"description": "GET Deck (Single)"
+					},
+					"response": []
+				},
+				{
+					"name": "GET UserDeckPairing (ALL)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/userdeckpairing/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"userdeckpairing",
+								""
+							]
+						},
+						"description": "GET Deck (ALL)"
+					},
+					"response": []
+				},
+				{
+					"name": "POST UserDeckPairing (Single)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userid\": 1,\n\t\"deckid\": 3\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/userdeckpairing/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"userdeckpairing",
+								""
+							]
+						},
+						"description": "POST Deck (Single)"
+					},
+					"response": []
+				},
+				{
+					"name": "DEL UserDeckPairing (Single)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/userdeckpairing/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"userdeckpairing",
+								"6"
+							]
+						},
+						"description": "DEL Deck (Single)"
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Deck (Single)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"updates\": {\n        \"userid\": 4,\n        \"deckid\": 2\n    }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/userdeckpairing/12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"userdeckpairing",
+								"12"
 							]
 						},
 						"description": "PATCH Deck (Single)"
