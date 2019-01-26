@@ -6,6 +6,171 @@
 	},
 	"item": [
 		{
+			"name": "Cards",
+			"item": [
+				{
+					"name": "GET Card (Single)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/cards/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"cards",
+								"2"
+							]
+						},
+						"description": "GET Deck (Single)"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Cards (ALL)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/cards/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"cards",
+								""
+							]
+						},
+						"description": "GET Deck (ALL)"
+					},
+					"response": []
+				},
+				{
+					"name": "POST Card (Single)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"deckid\": 2,\n\t\"question\": \"Is this thing on?\",\n\t\"answer\": \"I hope so!\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/cards/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"cards",
+								""
+							]
+						},
+						"description": "POST Deck (Single)"
+					},
+					"response": []
+				},
+				{
+					"name": "DEL Card (Single)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/cards/46",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"cards",
+								"46"
+							]
+						},
+						"description": "DEL Deck (Single)"
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Card (Single)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"updates\": {\n        \"deckid\": 2,\n        \"question\": \"Is this thing really on?\",\n        \"answer\": \"but of course\"\n    }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/cards/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"cards",
+								"3"
+							]
+						},
+						"description": "PATCH Deck (Single)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Deck",
 			"item": [
 				{
