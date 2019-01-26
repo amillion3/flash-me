@@ -1,4 +1,5 @@
 const routes = [
+  require('./routes/cards'),
   require('./routes/decks'),
   require('./routes/userdeckpairing'),
 ];
