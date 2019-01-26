@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     publicdeck: {
       type: DataTypes.INTEGER(4),
-      allowNull: false,
+      allowNull: true,
       defaultValue: '0'
     },
     deckcreatorid: {

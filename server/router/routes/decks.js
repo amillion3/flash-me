@@ -56,13 +56,13 @@ module.exports = (app, db) => {
   // PATCH single deck
   app.patch('/decks/:id', (req, res) => {
     const deckid = req.params.id;
-    const updates = req.body.updates;
+    const incomingUpdates = req.body.updates;
 
     db.decks.find({
       where: { deckid }
     })
       .then(deck => {
-        return deck.updateAttributes(updates)
+        return deck.update(incomingUpdates)
       })
       .then(updatedDeck => {
         res.json(updatedDeck);
