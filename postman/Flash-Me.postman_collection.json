@@ -171,6 +171,171 @@
 			]
 		},
 		{
+			"name": "History",
+			"item": [
+				{
+					"name": "GET History (Single)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/history/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"history",
+								"1"
+							]
+						},
+						"description": "GET Deck (Single)"
+					},
+					"response": []
+				},
+				{
+					"name": "GET History (ALL)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/history/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"history",
+								""
+							]
+						},
+						"description": "GET Deck (ALL)"
+					},
+					"response": []
+				},
+				{
+					"name": "POST History (Single)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userid\": 1,\n    \"cardid\": 2\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/history/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"history",
+								""
+							]
+						},
+						"description": "POST Deck (Single)"
+					},
+					"response": []
+				},
+				{
+					"name": "DEL History (Single)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/history/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"history",
+								"2"
+							]
+						},
+						"description": "DEL Deck (Single)"
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH History (Single)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"updates\": {\n        \"userid\": 1,\n        \"cardid\": 2,\n        \"difficulty\": \"2\",\n        \"daysbwreviews\": 3,\n        \"datelastreviewed\": \"01/01/2018\"\n    }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/history/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"history",
+								"1"
+							]
+						},
+						"description": "PATCH Deck (Single)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Users",
 			"item": [
 				{
