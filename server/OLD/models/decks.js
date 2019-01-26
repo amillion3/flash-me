@@ -2,7 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const Deck = sequelize.define('decks', {
     deckid: {
       type: DataTypes.INTEGER(11),
-      allowNull: true,
+      allowNull: false,
       primaryKey: true
     },
     name: {
@@ -20,8 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     deckcreatorid: {
       type: DataTypes.INTEGER(11),
-      allowNull: true,
-      defaultValue: 0,
+      allowNull: false,
       references: {
         model: 'users',
         key: 'userid'
@@ -36,8 +35,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     }
   }, {
-    timestamps: false
-  },  {
+    timestamps: false,
+  }, {
     tableName: 'decks'
   });
 

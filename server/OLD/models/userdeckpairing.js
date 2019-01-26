@@ -1,23 +1,21 @@
+/* jshint indent: 2 */
+
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('userdeckpairing', {
     userdeckpairingid: {
       type: DataTypes.INTEGER(11),
-      allowNull: true,
+      allowNull: false,
       primaryKey: true
     },
     userid: {
       type: DataTypes.INTEGER(11),
-      allowNull: true,
-      defaultValue: '0'
+      allowNull: false
     },
     deckid: {
       type: DataTypes.INTEGER(11),
-      allowNull: true,
-      defaultValue: '0'
+      allowNull: false
     }
   }, {
-    timestamps: false,
-    freezeTableName: true,
-    tableName: 'userdeckpairing',
+    tableName: 'userdeckpairing'
   });
 };
