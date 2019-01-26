@@ -1,6 +1,4 @@
-/* jshint indent: 2 */
-
-module.exports = function(sequelize, DataTypes) {
+module.exports = (sequelize, DataTypes) => {
   const Deck = sequelize.define('decks', {
     deckid: {
       type: DataTypes.INTEGER(11),

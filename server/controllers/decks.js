@@ -1,6 +1,7 @@
 // const Deck = require('../models').Deck;
 const Deck  = require ('../models/decks');
 
+
 module.exports = {
   create(req, res) {
     return Deck
@@ -16,9 +17,10 @@ module.exports = {
       .catch(error => res.status(400).send(error));
   },
   list(req, res) {
-    console.log('Deck.list');
-    return Deck
-      .find()
+    // console.log('Deck.list');
+    // console.log(res);
+    return Deck.Deck
+      .findAll()
       .then(deck => res.status(201).send(deck))
       .catch(error => res.status(400).send(error));
   },

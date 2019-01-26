@@ -48,4 +48,6 @@ sequelize
   db.sequelize = sequelize;
   db.Sequelize = Sequelize;
 
+  db.decks=require('../models/decks.js')(sequelize, Sequelize);
+
   module.exports = db;

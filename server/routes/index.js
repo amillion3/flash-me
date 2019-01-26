@@ -3,7 +3,7 @@ const decksController = require('../controllers').Deck;
 
 module.exports = app => {
   app.get('/api', (req, res) => res.status(200).send({
-    message: 'This is the Decks API',
+    message: 'This is FLASH-ME API',
   }));
 
   app.post('/api/decks', decksController.create);
