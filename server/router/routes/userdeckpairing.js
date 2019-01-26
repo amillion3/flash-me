@@ -35,11 +35,11 @@ module.exports = (app, db) => {
 
   // PATCH single deck
   app.patch('/userdeckpairing/:id', (req, res) => {
-    const userdeckpairing = req.params.id;
+    const userdeckpairingid = req.params.id;
     const updates = req.body.updates;
 
     db.userdeckpairing.find({
-      where: { userdeckpairing }
+      where: { userdeckpairingid }
     })
       .then(pairing => {
         return pairing.updateAttributes(updates)
@@ -51,10 +51,10 @@ module.exports = (app, db) => {
 
   // DELETE single deck
   app.delete('/userdeckpairing/:id', (req, res) => {
-    const userdeckpairing = req.params.id;
+    const userdeckpairingid = req.params.id;
 
     db.userdeckpairing.destroy({
-      where: { userdeckpairing }
+      where: { userdeckpairingid }
     })
       .then(deletedPairing => {
         res.json(deletedPairing);
