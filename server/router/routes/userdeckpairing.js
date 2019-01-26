@@ -1,23 +1,23 @@
 module.exports = (app, db) => {
-  // GET all decks
-  // app.get('/decks', (req, res) => {
-  //   db.decks.findAll()
-  //     .then(decks => {
-  //       res.json(decks);
-  //     });
-  // });
+  // GET all userdeckpairing
+  app.get('/userdeckpairing', (req, res) => {
+    db.userdeckpairing.findAll()
+      .then(userdeckpairings => {
+        res.json(userdeckpairings);
+      });
+  });
 
-  // GET one deck by id
-  // app.get('/decks/:id', (req, res) => {
-  //   const deckid = req.params.id;
+  // GET single userdeckpairing
+  app.get('/userdeckpairing/:id', (req, res) => {
+    const userdeckpairingid = req.params.id;
 
-  //   db.decks.find({
-  //     where: { deckid }
-  //   })
-  //     .then(deck => {
-  //       res.json(deck);
-  //     });
-  // });
+    db.userdeckpairing.find({
+      where: { userdeckpairingid }
+    })
+      .then(userdeckpairing => {
+        res.json(userdeckpairing);
+      });
+  });
 
   // POST single deck
   app.post('/userdeckpairing', (req, res) => {
@@ -34,30 +34,30 @@ module.exports = (app, db) => {
   });
 
   // PATCH single deck
-  // app.patch('/decks/:id', (req, res) => {
-  //   const deckid = req.params.id;
-  //   const updates = req.body.updates;
+  app.patch('/userdeckpairing/:id', (req, res) => {
+    const userdeckpairing = req.params.id;
+    const updates = req.body.updates;
 
-  //   db.decks.find({
-  //     where: { deckid }
-  //   })
-  //     .then(deck => {
-  //       return deck.updateAttributes(updates)
-  //     })
-  //     .then(updatedDeck => {
-  //       res.json(updatedDeck);
-  //     });
-  // });
+    db.userdeckpairing.find({
+      where: { userdeckpairing }
+    })
+      .then(pairing => {
+        return pairing.updateAttributes(updates)
+      })
+      .then(updatedPairing => {
+        res.json(updatedPairing);
+      });
+  });
 
   // DELETE single deck
-  // app.delete('/decks/:id', (req, res) => {
-  //   const deckid = req.params.id;
+  app.delete('/userdeckpairing/:id', (req, res) => {
+    const userdeckpairing = req.params.id;
 
-  //   db.decks.destroy({
-  //     where: { deckid }
-  //   })
-  //     .then(deletedDeck => {
-  //       res.json(deletedDeck);
-  //     });
-  // });
+    db.userdeckpairing.destroy({
+      where: { userdeckpairing }
+    })
+      .then(deletedPairing => {
+        res.json(deletedPairing);
+      });
+  });
 };
