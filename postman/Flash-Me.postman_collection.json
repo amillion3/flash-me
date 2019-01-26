@@ -171,6 +171,171 @@
 			]
 		},
 		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "GET User (Single)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"2"
+							]
+						},
+						"description": "GET Deck (Single)"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Users (ALL)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								""
+							]
+						},
+						"description": "GET Deck (ALL)"
+					},
+					"response": []
+				},
+				{
+					"name": "POST User (Single)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"namefirst\": \"Jimbo\",\n\t\"namelast\": \"HIYO\",\n\t\"deckcurrentlyloaded\": \"1\",\n\t\"deckscurrentlyused\": \"1\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								""
+							]
+						},
+						"description": "POST Deck (Single)"
+					},
+					"response": []
+				},
+				{
+					"name": "DEL User (Single)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"3"
+							]
+						},
+						"description": "DEL Deck (Single)"
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH User (Single)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"updates\": {\n        \"namefirst\": \"Joeyyy\",\n        \"namelast\": \"Smithson\",\n        \"deckcurrentlyloaded\": \"1\",\n        \"deckscurrentlyused\": \"1,2\"\n    }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"2"
+							]
+						},
+						"description": "PATCH Deck (Single)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Deck",
 			"item": [
 				{
