@@ -51,7 +51,7 @@ module.exports = (app, db) => {
       });
   });
 
-  // DELETE single deck
+  // DELETE single card
   app.delete('/cards/:id', (req, res) => {
     const cardid = req.params.id;
 
