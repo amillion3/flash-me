@@ -19,6 +19,7 @@ db.sequelize = sequelize;
 //Models/tables
 db.cards = require('../models/cards.js')(sequelize, Sequelize);
 db.decks = require('../models/decks.js')(sequelize, Sequelize);
+db.history = require('../models/history.js')(sequelize, Sequelize);
 db.userdeckpairing = require('../models/userdeckpairing.js')(sequelize, Sequelize);
 db.users = require('../models/users.js')(sequelize, Sequelize);
 
