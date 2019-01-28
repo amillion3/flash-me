@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Navbar, Button } from 'react-bootstrap';
+import React, { Component, Fragment } from 'react';
+import { Nav, Navbar, NavItem} from 'react-bootstrap';
 import './App.scss';
 
 class App extends Component {
@@ -27,46 +27,35 @@ class App extends Component {
     const { isAuthenticated } = this.props.auth;
 
     return (
-      <div>
-        <Navbar fluid>
+      <Fragment>
+        <Navbar inverse collapseOnSelect>
           <Navbar.Header>
-            <Navbar.Brand>
-              <a href="#">Auth0 - React</a>
-            </Navbar.Brand>
-            <Button
-              bsStyle="primary"
-              className="btn-margin"
-              onClick={this.goTo.bind(this, 'home')}
-            >
-              Home
-            </Button>
-            {
-              !isAuthenticated() && (
-                  <Button
-                    id="qsLoginBtn"
-                    bsStyle="primary"
-                    className="btn-margin"
-                    onClick={this.login.bind(this)}
-                  >
-                    Log In
-                  </Button>
-                )
-            }
-            {
-              isAuthenticated() && (
-                  <Button
-                    id="qsLogoutBtn"
-                    bsStyle="primary"
-                    className="btn-margin"
-                    onClick={this.logout.bind(this)}
-                  >
-                    Log Out
-                  </Button>
-                )
-            }
+            <Navbar.Brand onClick={this.goTo.bind(this, 'home')} style={{ cursor: 'pointer' }}
+            >Flash Me</Navbar.Brand>
+            <Navbar.Toggle />
           </Navbar.Header>
+          <Navbar.Collapse>
+            <Nav pullRight>
+              {
+              isAuthenticated() ?
+                <Fragment>
+                  <NavItem eventKey={3} onClick={this.goTo.bind(this, 'dashboard')}
+                  >Dashboard</NavItem>
+                  <NavItem eventKey={4} onClick={this.goTo.bind(this, 'cardreview')}
+                  >Review Cards</NavItem>
+                  <NavItem eventKey={5} onClick={this.logout.bind(this)}
+                  >Logout</NavItem>
+                </Fragment>
+              :
+                <Fragment>
+                  <NavItem eventKey={1} onClick={this.login.bind(this)}
+                  >Login/Register</NavItem>
+                </Fragment>
+              }
+            </Nav>
+          </Navbar.Collapse>
         </Navbar>
-      </div>
+      </Fragment>
     );
   }
 }

@@ -1,22 +1,37 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+
+import './Home.scss';
 
 class Home extends Component {
+  state = {
+    authd: false,
+  }
+
+  componentDidMount () {
+    this.setState({
+      authd: this.props.auth.isAuthenticated(),
+    });
+  };
+
   login() {
     this.props.auth.login();
   }
+
   render() {
     const { isAuthenticated } = this.props.auth;
     return (
       <div className="container">
         {
           isAuthenticated() && (
-              <h4>
-                You are logged in!
-              </h4>
-            )
+            <Fragment>
+              <h1>Welcome Home</h1>
+            </Fragment>
+          )
         }
+
         {
           !isAuthenticated() && (
+            <Fragment>
               <h4>
                 You are not logged in! Please{' '}
                 <a
@@ -27,7 +42,8 @@ class Home extends Component {
                 </a>
                 {' '}to continue.
               </h4>
-            )
+            </Fragment>
+          )
         }
       </div>
     );

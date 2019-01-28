@@ -5,6 +5,8 @@ import Home from './Home/Home';
 import Callback from './Callback/Callback';
 import Auth from './Auth/Auth';
 import history from './history';
+import Dashboard from './Components/Dashboard/Dashboard';
+import CardReview from './Components/CardReview/CardReview';
 
 const auth = new Auth();
 
@@ -20,9 +22,11 @@ export const makeMainRoutes = () => {
         <div>
           <Route path="/" render={(props) => <App auth={auth} {...props} />} />
           <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
+          <Route path="/dashboard" render={(props) => <Dashboard auth={auth} {...props} />} />
+          <Route path="/cardreview" render={(props) => <CardReview auth={auth} {...props} />} />
           <Route path="/callback" render={(props) => {
             handleAuthentication(props);
-            return <Callback {...props} /> 
+            return <Callback {...props} />
           }}/>
         </div>
       </Router>
