@@ -23,10 +23,6 @@ class App extends Component {
     }
   }
 
-  clickDashboard() {
-
-  };
-
   render() {
     const { isAuthenticated } = this.props.auth;
 
@@ -34,7 +30,7 @@ class App extends Component {
       <Fragment>
         <Navbar inverse collapseOnSelect>
           <Navbar.Header>
-            <Navbar.Brand onClick={this.goTo.bind(this, 'home')} id="navbar-brand"
+            <Navbar.Brand onClick={this.goTo.bind(this, 'home')} style={{ cursor: 'pointer' }}
             >Flash Me</Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
@@ -43,17 +39,17 @@ class App extends Component {
               {
               isAuthenticated() ?
                 <Fragment>
-                  <NavItem eventKey={3} onClick={this.clickDashboard}
+                  <NavItem eventKey={3} onClick={this.goTo.bind(this, 'dashboard')}
                   >Dashboard</NavItem>
-                  <NavItem eventKey={4} onClick={this.logout.bind(this)}
+                  <NavItem eventKey={4} onClick={this.goTo.bind(this, 'cardreview')}
+                  >Review Cards</NavItem>
+                  <NavItem eventKey={5} onClick={this.logout.bind(this)}
                   >Logout</NavItem>
                 </Fragment>
               :
                 <Fragment>
-                  <NavItem eventKey={1} onClick={this.clickRegister}
-                  >Register</NavItem>
                   <NavItem eventKey={1} onClick={this.login.bind(this)}
-                  >Login</NavItem>
+                  >Login/Register</NavItem>
                 </Fragment>
               }
             </Nav>

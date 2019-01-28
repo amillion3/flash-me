@@ -1,23 +1,15 @@
 import React, { Component, Fragment } from 'react';
 
-import Main from '../Components/Main/Main';
-import Dashboard from '../Components/Dashboard/Dashboard';
-import CardReview from '../Components/CardReview/CardReview';
-
 import './Home.scss';
 
 class Home extends Component {
   state = {
-    showMain: true,
-    showDash: false,
-    showCardReview: false,
     authd: false,
   }
 
   componentDidMount () {
-    console.log(this.props);
     this.setState({
-      authd: this.props.auth.isAuthenticated,
+      authd: this.props.auth.isAuthenticated(),
     });
   };
 
@@ -32,26 +24,14 @@ class Home extends Component {
         {
           isAuthenticated() && (
             <Fragment>
-              {this.state.showMain ?
-              <Main></Main>
-              : null
-              }
-
-              {this.state.showDash ?
-              <Dashboard></Dashboard>
-              : null
-              }
-
-              {this.state.showCardReview ?
-              <CardReview></CardReview>
-              : null
-              }
+              <h1>Welcome Home</h1>
             </Fragment>
           )
         }
 
         {
           !isAuthenticated() && (
+            <Fragment>
               <h4>
                 You are not logged in! Please{' '}
                 <a
@@ -62,7 +42,8 @@ class Home extends Component {
                 </a>
                 {' '}to continue.
               </h4>
-            )
+            </Fragment>
+          )
         }
       </div>
     );

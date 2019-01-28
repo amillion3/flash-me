@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import './Dashboard.scss';
 
@@ -9,7 +9,9 @@ class Dashboard extends Component {
 
   render() {
     return (
-      null
+      <Fragment>
+        <h1>Dashboard</h1>
+      </Fragment>
     );
   }
 }

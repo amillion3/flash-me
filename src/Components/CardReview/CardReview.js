@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import './CardReview.scss';
 
@@ -9,7 +9,9 @@ class CardReview extends Component {
 
   render() {
     return (
-      null
+      <Fragment>
+        <h1>Card Review</h1>
+      </Fragment>
     );
   }
 }
