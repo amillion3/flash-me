@@ -22,14 +22,6 @@ class Home extends Component {
     return (
       <div className="container">
         {
-          isAuthenticated() && (
-            <Fragment>
-              <h1>Welcome Home</h1>
-            </Fragment>
-          )
-        }
-
-        {
           !isAuthenticated() && (
             <Fragment>
               <h4>

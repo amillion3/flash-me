@@ -1,10 +1,26 @@
 import React, { Component, Fragment } from 'react';
-import { Nav, Navbar, NavItem} from 'react-bootstrap';
+import { BrowserRouter as Router } from "react-router-dom";
+import {
+  MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler,
+  MDBCollapse, MDBNavItem, MDBNavLink
+} from "mdbreact";
+
 import './App.scss';
 
 class App extends Component {
+  state = {
+    collapse: false,
+    isWideEnough: false,
+  }
+
+  onClick() {
+    this.setState({
+      collapse: !this.state.collapse,
+    });
+  }
+
   goTo(route) {
-    this.props.history.replace(`/${route}`)
+    this.props.history.replace(`/${route}`);
   }
 
   login() {
@@ -28,33 +44,57 @@ class App extends Component {
 
     return (
       <Fragment>
-        <Navbar inverse collapseOnSelect>
-          <Navbar.Header>
-            <Navbar.Brand onClick={this.goTo.bind(this, 'home')} style={{ cursor: 'pointer' }}
-            >Flash Me</Navbar.Brand>
-            <Navbar.Toggle />
-          </Navbar.Header>
-          <Navbar.Collapse>
-            <Nav pullRight>
+      <Router>
+        <MDBNavbar
+          color="bg-primary"
+          fixed="top"
+          dark
+          expand="md"
+          scrolling
+          transparent
+        >
+          <MDBNavbarBrand to="/home" onClick={this.goTo.bind(this, 'home')}>
+            <strong>Flash Me</strong>
+          </MDBNavbarBrand>
+          {!this.state.isWideEnough && (
+            <MDBNavbarToggler onClick={this.onClick} />
+          )}
+          <MDBCollapse isOpen={this.state.collapse} navbar>
+            <MDBNavbarNav right>
               {
-              isAuthenticated() ?
+                isAuthenticated() ?
                 <Fragment>
-                  <NavItem eventKey={3} onClick={this.goTo.bind(this, 'dashboard')}
-                  >Dashboard</NavItem>
-                  <NavItem eventKey={4} onClick={this.goTo.bind(this, 'cardreview')}
-                  >Review Cards</NavItem>
-                  <NavItem eventKey={5} onClick={this.logout.bind(this)}
-                  >Logout</NavItem>
+                  <MDBNavItem>
+                    <MDBNavLink
+                     to="/cardreview"
+                     onClick={this.goTo.bind(this, 'cardreview')}
+                    >Review Cards</MDBNavLink>
+                  </MDBNavItem>
+                  <MDBNavItem>
+                    <MDBNavLink
+                     to="/dashboard"
+                     onClick={this.goTo.bind(this, 'dashboard')}
+                    >Dashboard</MDBNavLink>
+                  </MDBNavItem>
+                  <MDBNavItem>
+                    <MDBNavLink
+                    to="/dashboard"
+                    onClick={this.logout.bind(this)}
+                    >Logout</MDBNavLink>
+                  </MDBNavItem>
                 </Fragment>
               :
-                <Fragment>
-                  <NavItem eventKey={1} onClick={this.login.bind(this)}
-                  >Login/Register</NavItem>
-                </Fragment>
+                <MDBNavItem>
+                  <MDBNavLink
+                  to="/dashboard"
+                  onClick={this.login.bind(this)}
+                  >Login/Register</MDBNavLink>
+                </MDBNavItem>
               }
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
+            </MDBNavbarNav>
+          </MDBCollapse>
+        </MDBNavbar>
+      </Router>
       </Fragment>
     );
   }
