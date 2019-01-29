@@ -1,0 +1,13 @@
+.col-rating {
+  width: 100%;
+  font-size: 18px;
+}
+
+.row-rating-container {
+  margin-bottom: 40px;
+}
+
+.col-button-rating-container {
+  padding-left: 0px;
+  padding-right: 0px;
+}
