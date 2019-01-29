@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
 import {
   MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler,
-  MDBCollapse, MDBNavItem, MDBNavLink, MDBMask, MDBView, MDBContainer
+  MDBCollapse, MDBNavItem, MDBNavLink
 } from "mdbreact";
 
 import './App.scss';
@@ -15,12 +15,12 @@ class App extends Component {
 
   onClick() {
     this.setState({
-      collapse: !this.state.collapse
+      collapse: !this.state.collapse,
     });
   }
 
   goTo(route) {
-    this.props.history.replace(`/${route}`)
+    this.props.history.replace(`/${route}`);
   }
 
   login() {
@@ -64,7 +64,7 @@ class App extends Component {
               {
                 isAuthenticated() ?
                 <Fragment>
-                  <MDBNavItem active>
+                  <MDBNavItem>
                     <MDBNavLink
                      to="/cardreview"
                      onClick={this.goTo.bind(this, 'cardreview')}
@@ -95,16 +95,6 @@ class App extends Component {
           </MDBCollapse>
         </MDBNavbar>
       </Router>
-        <MDBView src="https://mdbootstrap.com/img/Photos/Others/img%20(40).jpg">
-        <MDBMask
-          overlay="purple-light"
-          className="flex-center flex-column text-white text-center"
-          >
-            <MDBContainer className="text-center my-5">
-
-            </MDBContainer>
-        </MDBMask>
-      </MDBView>
       </Fragment>
     );
   }

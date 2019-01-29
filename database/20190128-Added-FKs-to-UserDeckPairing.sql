@@ -110,7 +110,9 @@ CREATE TABLE `userdeckpairing` (
   `userdeckpairingid` int(11) NOT NULL AUTO_INCREMENT,
   `userid` int(11) NOT NULL,
   `deckid` int(11) NOT NULL,
-  PRIMARY KEY (`userdeckpairingid`)
+  PRIMARY KEY (`userdeckpairingid`),
+  FOREIGN KEY (`userid`) REFERENCES users (`userid`),
+  FOREIGN KEY (`deckid`) REFERENCES decks (`deckid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
