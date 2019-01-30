@@ -53,8 +53,11 @@ class App extends Component {
           scrolling
           transparent
         >
-          <MDBNavbarBrand to="/home" onClick={this.goTo.bind(this, 'home')}>
-            <strong>Flash Me</strong>
+          <MDBNavbarBrand
+            to="/home"
+            onClick={this.goTo.bind(this, 'home')}
+            className="nav-brand">
+              <h1>Flash Me</h1>
           </MDBNavbarBrand>
           {!this.state.isWideEnough && (
             <MDBNavbarToggler onClick={this.onClick} />
@@ -68,18 +71,21 @@ class App extends Component {
                     <MDBNavLink
                      to="/cardreview"
                      onClick={this.goTo.bind(this, 'cardreview')}
+                     className="nav-menu-items"
                     >Review Cards</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
                     <MDBNavLink
                      to="/dashboard"
                      onClick={this.goTo.bind(this, 'dashboard')}
+                     className="nav-menu-items"
                     >Dashboard</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
                     <MDBNavLink
-                    to="/dashboard"
+                    to="/home"
                     onClick={this.logout.bind(this)}
+                    className="nav-menu-items"
                     >Logout</MDBNavLink>
                   </MDBNavItem>
                 </Fragment>
@@ -88,6 +94,7 @@ class App extends Component {
                   <MDBNavLink
                   to="/dashboard"
                   onClick={this.login.bind(this)}
+                  className="nav-menu-items"
                   >Login/Register</MDBNavLink>
                 </MDBNavItem>
               }
