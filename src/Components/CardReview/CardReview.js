@@ -10,18 +10,24 @@ import './CardReview.scss';
 
 class CardReview extends Component {
   state = {
-
+    currentDeckId: 1,
   }
 
   render() {
     return (
       <Fragment>
-        <CRQuestion></CRQuestion>
-        <CRAnswer></CRAnswer>
+        <CRQuestion id={this.state.currentDeckId}></CRQuestion>
+
+        <CRAnswer id={this.state.currentDeckId}></CRAnswer>
+
         <CRRatingContainer>
+
           <ButtonCardRating></ButtonCardRating>
+
         </CRRatingContainer>
+
         <CRRatingMenu></CRRatingMenu>
+
       </Fragment>
     );
   }
