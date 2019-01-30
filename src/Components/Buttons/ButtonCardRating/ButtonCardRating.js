@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import { MDBBtn } from "mdbreact";
 
+import './ButtonCardRating.scss';
+
 const ButtonCardRating = () => {
   return (
     <Fragment>

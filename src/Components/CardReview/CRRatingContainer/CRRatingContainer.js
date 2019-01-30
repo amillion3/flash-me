@@ -1,7 +1,7 @@
 import React from "react";
 import { MDBBtn, MDBCol, MDBRow } from "mdbreact";
 
-import "./CRRatingContainer.css";
+import "./CRRatingContainer.scss";
 
 const BtnGroupPage = () => {
   return (
