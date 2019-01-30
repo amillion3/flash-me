@@ -11,14 +11,31 @@ import './CardReview.scss';
 class CardReview extends Component {
   state = {
     currentDeckId: 1,
+    showQuestion: true,
   }
 
   render() {
+    // onClick does not work right now
     return (
       <Fragment>
-        <CRQuestion id={this.state.currentDeckId}></CRQuestion>
-
-        <CRAnswer id={this.state.currentDeckId}></CRAnswer>
+        {
+          this.state.showQuestion ?
+            <CRQuestion
+              id={this.state.currentDeckId}
+              onClick={() => this.setState({ showQuestion: false })}
+              >
+            </CRQuestion>
+          : null
+        }
+        {
+          !this.state.showQuestion ?
+            <CRAnswer
+              id={this.state.currentDeckId}
+              onClick={() => this.setState({ showQuestion: true })}
+              >
+            </CRAnswer>
+          : null
+        }
 
         <CRRatingContainer>
 
