@@ -1,87 +1,76 @@
 import axios from 'axios';
+import moment from 'moment';
 
 const GetSingle = id => {
-  const url = 'http://localhost:8000:';
   const apiPath = `http://localhost:8000/decks/${id}`;
   return new Promise((resolve, reject) => {
     axios
       .get(apiPath)
       .then(deck => {
-        console.log('REQUEST', deck)
-        resolve(deck.data[0]);
+        resolve(deck.data);
       })
       .catch(error => reject(error));
   });
 }
 
-// const GetAll = () => {
-//   const apiPath = `api/product`;
-//   return new Promise((resolve, reject) => {
-//     axios
-//       .get(apiPath)
-//       .then(products => resolve (products.data))
-//       .catch(error => reject(error));
-//     });
-// };
+const GetAll = () => {
+  const apiPath = `http://localhost:8000/decks`;
+  return new Promise((resolve, reject) => {
+    axios
+      .get(apiPath)
+      .then(decks => resolve (decks.data))
+      .catch(error => reject(error));
+    });
+};
 
-// const GetSingle = id => {
-//   const apiPath = `api/product/${id}`;
-//   return new Promise((resolve, reject) => {
-//     axios
-//       .get(apiPath)
-//       // .then(product => resolve (product.data[0]))
-//       .then(product => {
-//         console.log('REQUEST', product)
-//         resolve(product.data[0]);
-//       })
-//       .catch(error => reject(error));
-//   });
-// }
+const AddDeck = input => {
+  const apiPath = `http://localhost:8000/decks/`;
+  // gets current date as `2018-01-24`
+  const currentDate = moment().format('YYYY-MM-DD');
+  return new Promise((resolve, reject) => {
+    axios
+      .post(apiPath, {
+        name: input.name,
+        category: input.category,
+        publicdeck: input.publicdeck,
+        deckcreatorid: input.deckcreatorid,
+        datecreated: currentDate,
+        datelastmodified: currentDate,
+      })
+      .then(response => resolve (response))
+      .catch(error => reject(error));
+  });
+}
 
-// const Add = input => {
-//   const apiPath = `api/product`;
-//   return new Promise((resolve, reject) => {
-//     axios
-//       .post(apiPath, {
-//         category: input.category,
-//         price: input.price,
-//         title: input.title,
-//         description: input.description,
-//         quantity: input.quantity,
-//         owner_id: input.owner_id,
-//       })
-//       .then(response => resolve (response))
-//       .catch(error => reject(error));
-//   });
-// }
+const DeleteDeck = input => {
+  const apiPath = `http://localhost:8000/decks/${input}`;
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(apiPath)
+      .then(response => resolve (response))
+      .catch(error => reject(error));
+  });
+}
 
-// const Delete = input => {
-//   const apiPath = `api/product/${input}`;
-//   return new Promise((resolve, reject) => {
-//     axios
-//       .delete(apiPath)
-//       .then(response => resolve (response))
-//       .catch(error => reject(error));
-//   });
-// }
-
-// const Update = (input, id) => {
-//   const apiPath = `api/product/${id}`;
-//   return new Promise((resolve, reject) => {
-//     axios
-//       .put(apiPath, {
-//         category: input.category,
-//         price: input.price,
-//         title: input.title,
-//         description: input.description,
-//         quantity: input.quantity,
-//         owner_id: input.owner_id,
-//       })
-//       .then(response => resolve (response))
-//       .catch(error => reject(error));
-//   });
-// }
+const UpdateDeck = (input, id) => {
+  const apiPath = `http://localhost:8000/decks/${id}`;
+  // gets current date as `2018-01-24`
+  const currentDate = moment().format('YYYY-MM-DD');
+  return new Promise((resolve, reject) => {
+    axios
+      .put(apiPath, {
+        name: input.name,
+        category: input.category,
+        publicdeck: input.publicdeck,
+        deckcreatorid: input.deckcreatorid,
+        datecreated: input.datecreated,
+        datelastmodified: currentDate,
+      })
+      .then(response => resolve (response))
+      .catch(error => reject(error));
+  });
+}
 
 export default {
-  GetSingle,
+  GetSingle, GetAll, AddDeck, DeleteDeck, UpdateDeck
 };
