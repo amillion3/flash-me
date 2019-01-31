@@ -1,18 +1,51 @@
-import React, { Fragment } from "react";
+import React, { Fragment, Component } from "react";
 import { MDBJumbotron, MDBContainer } from "mdbreact";
 
 import './CRAnswer.scss';
 
-const CRAnswer = () => {
-  return (
-    <Fragment>
-      <MDBJumbotron fluid>
-        <MDBContainer>
-          <h3 className="display-4 card-rev">C# is a general purpose, object oriented programming language.</h3>
-        </MDBContainer>
-      </MDBJumbotron>
-    </Fragment>
-  );
+
+class CRAnswer extends Component {
+  state = {
+    deckId: 0,
+    deck: [],
+    card: [],
+    show: false,
+  };
+
+  componentDidMount() {
+    // console.log('comp mount, props : ',this.props);
+    // return new Promise((resolve, reject) => {
+    //   RequestsDecks.GetSingle(this.props.id)
+    //   .then(deck => {
+    //     console.log('comp mount, deck: ',deck);
+    //     this.setState({ deck })
+    //     resolve (deck);
+    //   })
+    //   .catch(error => reject(error));
+    // });
+  };
+
+
+  click = e => {
+    const showQuestion = this.state.show;
+    this.setState({ show: showQuestion});
+    this.props.callbackFromParent(!showQuestion);
+  }
+
+  render() {
+    return (
+      <Fragment>
+        <MDBJumbotron fluid>
+          <MDBContainer
+            onClick={this.click}
+          >
+            <h2 className="display-4 card-rev">C# is a general purpose, object oriented programming language.</h2>
+          </MDBContainer>
+        </MDBJumbotron>
+      </Fragment>
+    );
+
+  }
 };
 
 export default CRAnswer;

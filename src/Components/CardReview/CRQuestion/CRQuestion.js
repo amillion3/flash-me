@@ -27,11 +27,14 @@ class CRQuestion extends Component {
     });
   };
 
+
   render() {
     return (
       <Fragment>
         <MDBJumbotron fluid>
-          <MDBContainer>
+          <MDBContainer
+            onClick={this.click}
+          >
             <h2 className="display-4 card-rev">What is C#?</h2>
           </MDBContainer>
         </MDBJumbotron>

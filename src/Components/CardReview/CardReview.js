@@ -11,7 +11,7 @@ import './CardReview.scss';
 class CardReview extends Component {
   state = {
     currentDeckId: 1,
-    showQuestion: true,
+    showQuestion: false,
   }
 
   render() {
@@ -19,22 +19,21 @@ class CardReview extends Component {
     return (
       <Fragment>
         {
-          this.state.showQuestion ?
-            <CRQuestion
-              id={this.state.currentDeckId}
-              onClick={() => this.setState({ showQuestion: false })}
-              >
-            </CRQuestion>
-          : null
-        }
-        {
-          !this.state.showQuestion ?
+          this.state.showQuestion ? null
+            // <CRQuestion
+            //   id={this.state.currentDeckId}
+            //   callbackFromParent={this.questionCallback}
+            //   showQuestion ={this.state.showQuestion}
+            //   >
+            // </CRQuestion>
+          :
             <CRAnswer
               id={this.state.currentDeckId}
-              onClick={() => this.setState({ showQuestion: true })}
+              callbackFromParent={this.answerCallback}
+              showAnswer ={this.state.showAnswer}
               >
             </CRAnswer>
-          : null
+
         }
 
         <CRRatingContainer>
