@@ -13,16 +13,16 @@ class CRAnswer extends Component {
   };
 
   componentDidMount() {
-    // console.log('comp mount, props : ',this.props);
-    // return new Promise((resolve, reject) => {
-    //   RequestsDecks.GetSingle(this.props.id)
-    //   .then(deck => {
-    //     console.log('comp mount, deck: ',deck);
-    //     this.setState({ deck })
-    //     resolve (deck);
-    //   })
-    //   .catch(error => reject(error));
-    // });
+    console.log('comp mount, props : ',this.props);
+    return new Promise((resolve, reject) => {
+      RequestsDecks.GetSingle(this.props.id)
+      .then(deck => {
+        console.log('comp mount, deck: ',deck);
+        this.setState({ deck })
+        resolve (deck);
+      })
+      .catch(error => reject(error));
+    });
   };
 
 

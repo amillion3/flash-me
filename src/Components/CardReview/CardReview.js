@@ -19,7 +19,6 @@ class CardReview extends Component {
   }
 
   render() {
-    // onClick does not work right now
     return (
       <Fragment>
         {
@@ -35,7 +34,6 @@ class CardReview extends Component {
               callbackFromParent={this.theCallback}
               >
             </CRAnswer>
-
         }
 
         <CRRatingContainer>
