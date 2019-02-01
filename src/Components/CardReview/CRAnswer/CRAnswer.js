@@ -26,10 +26,9 @@ class CRAnswer extends Component {
   };
 
 
-  click = e => {
-    const showQuestion = this.state.show;
-    this.setState({ show: showQuestion});
-    this.props.callbackFromParent(!showQuestion);
+  clicky = e => {
+    this.props.callbackFromParent(!this.state.show);
+    this.setState({show: !this.state.show});
   }
 
   render() {
@@ -37,14 +36,13 @@ class CRAnswer extends Component {
       <Fragment>
         <MDBJumbotron fluid>
           <MDBContainer
-            onClick={this.click}
+            onClick={this.clicky}
           >
             <h2 className="display-4 card-rev">C# is a general purpose, object oriented programming language.</h2>
           </MDBContainer>
         </MDBJumbotron>
       </Fragment>
     );
-
   }
 };
 

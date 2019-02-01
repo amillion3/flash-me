@@ -12,20 +12,26 @@ class CRQuestion extends Component {
     deckId: 0,
     deck: [],
     card: [],
+    show: true,
   };
 
-  componentDidMount() {
-    console.log('comp mount, props : ',this.props);
-    return new Promise((resolve, reject) => {
-      RequestsDecks.GetSingle(this.props.id)
-      .then(deck => {
-        console.log('comp mount, deck: ',deck);
-        this.setState({ deck })
-        resolve (deck);
-      })
-      .catch(error => reject(error));
-    });
-  };
+  clicky = e => {
+    this.props.callbackFromParent(!this.state.show);
+    this.setState({show: !this.state.show});
+  }
+
+  // componentDidMount() {
+  //   console.log('comp mount, props : ',this.props);
+  //   return new Promise((resolve, reject) => {
+  //     RequestsDecks.GetSingle(this.props.id)
+  //     .then(deck => {
+  //       console.log('comp mount, deck: ',deck);
+  //       this.setState({ deck })
+  //       resolve (deck);
+  //     })
+  //     .catch(error => reject(error));
+  //   });
+  // };
 
 
   render() {
@@ -33,14 +39,13 @@ class CRQuestion extends Component {
       <Fragment>
         <MDBJumbotron fluid>
           <MDBContainer
-            onClick={this.click}
+            onClick={this.clicky}
           >
             <h2 className="display-4 card-rev">What is C#?</h2>
           </MDBContainer>
         </MDBJumbotron>
       </Fragment>
     );
-
   }
 };
 

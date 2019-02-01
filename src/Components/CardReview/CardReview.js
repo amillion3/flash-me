@@ -11,7 +11,11 @@ import './CardReview.scss';
 class CardReview extends Component {
   state = {
     currentDeckId: 1,
-    showQuestion: false,
+    showQuestion: true,
+  }
+
+  theCallback = showQuestion => {
+    this.setState({ showQuestion })
   }
 
   render() {
@@ -19,18 +23,16 @@ class CardReview extends Component {
     return (
       <Fragment>
         {
-          this.state.showQuestion ? null
-            // <CRQuestion
-            //   id={this.state.currentDeckId}
-            //   callbackFromParent={this.questionCallback}
-            //   showQuestion ={this.state.showQuestion}
-            //   >
-            // </CRQuestion>
+          this.state.showQuestion ?
+            <CRQuestion
+              id={this.state.currentDeckId}
+              callbackFromParent={this.theCallback}
+              >
+            </CRQuestion>
           :
             <CRAnswer
               id={this.state.currentDeckId}
-              callbackFromParent={this.answerCallback}
-              showAnswer ={this.state.showAnswer}
+              callbackFromParent={this.theCallback}
               >
             </CRAnswer>
 
