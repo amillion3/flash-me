@@ -10,18 +10,42 @@ import './CardReview.scss';
 
 class CardReview extends Component {
   state = {
+    currentDeckId: 1,
+    showQuestion: true,
+  }
 
+  theCallback = showQuestion => {
+    this.setState({ showQuestion })
   }
 
   render() {
+    // onClick does not work right now
     return (
       <Fragment>
-        <CRQuestion></CRQuestion>
-        <CRAnswer></CRAnswer>
+        {
+          this.state.showQuestion ?
+            <CRQuestion
+              id={this.state.currentDeckId}
+              callbackFromParent={this.theCallback}
+              >
+            </CRQuestion>
+          :
+            <CRAnswer
+              id={this.state.currentDeckId}
+              callbackFromParent={this.theCallback}
+              >
+            </CRAnswer>
+
+        }
+
         <CRRatingContainer>
+
           <ButtonCardRating></ButtonCardRating>
+
         </CRRatingContainer>
+
         <CRRatingMenu></CRRatingMenu>
+
       </Fragment>
     );
   }

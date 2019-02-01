@@ -6,7 +6,10 @@ const express = require('express'),
   router = require('./server/router/index');
 
 const app = express();
+const cors = require ('cors');
 const PORT = env.PORT;
+
+app.use(cors());
 
 app.use(morgan('combined'));
 app.use(bodyParser.json());
