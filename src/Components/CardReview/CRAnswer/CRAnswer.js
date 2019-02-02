@@ -1,34 +1,15 @@
 import React, { Fragment, Component } from "react";
 import { MDBJumbotron, MDBContainer } from "mdbreact";
 
-import RequestsCards from '../../../Requests/Cards';
-import RequestsDecks from '../../../Requests/Decks';
-
 import './CRAnswer.scss';
 
 
 class CRAnswer extends Component {
   state = {
-    deckId: 0,
-    deck: [],
-    card: [],
     show: false,
   };
 
-  componentDidMount() {
-    console.log('comp mount, props : ',this.props);
-    return new Promise((resolve, reject) => {
-      RequestsDecks.GetSingle(this.props.id)
-      .then(deck => {
-        this.setState({ deck })
-        resolve (deck);
-      })
-      .catch(error => reject(error));
-    });
-  };
-
-
-  clicky = e => {
+  clicky = () => {
     this.props.callbackFromParent(!this.state.show);
     this.setState({show: !this.state.show});
   }
@@ -40,7 +21,9 @@ class CRAnswer extends Component {
           <MDBContainer
             onClick={this.clicky}
           >
-            <h2 className="display-4 card-rev">C# is a general purpose, object oriented programming language.</h2>
+            <h2 className="display-4 card-rev">
+              {this.props.answerText}
+            </h2>
           </MDBContainer>
         </MDBJumbotron>
       </Fragment>
