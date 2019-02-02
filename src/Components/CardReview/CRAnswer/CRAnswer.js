@@ -1,6 +1,9 @@
 import React, { Fragment, Component } from "react";
 import { MDBJumbotron, MDBContainer } from "mdbreact";
 
+import RequestsCards from '../../../Requests/Cards';
+import RequestsDecks from '../../../Requests/Decks';
+
 import './CRAnswer.scss';
 
 
@@ -17,7 +20,6 @@ class CRAnswer extends Component {
     return new Promise((resolve, reject) => {
       RequestsDecks.GetSingle(this.props.id)
       .then(deck => {
-        console.log('comp mount, deck: ',deck);
         this.setState({ deck })
         resolve (deck);
       })

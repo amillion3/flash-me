@@ -6,7 +6,6 @@ import RequestsDecks from '../../../Requests/Decks';
 
 import './CRQuestion.scss';
 
-
 class CRQuestion extends Component {
   state = {
     deckId: 0,
@@ -15,24 +14,22 @@ class CRQuestion extends Component {
     show: true,
   };
 
-  clicky = e => {
+  clicky = () => {
     this.props.callbackFromParent(!this.state.show);
     this.setState({show: !this.state.show});
   }
 
   componentDidMount() {
-    console.log('comp mount, props : ',this.props);
     return new Promise((resolve, reject) => {
-      RequestsDecks.GetSingle(this.props.id)
+      RequestsCards.GetAllByDeckId(this.props.id)
       .then(deck => {
-        console.log('comp mount, deck: ',deck);
         this.setState({ deck })
+        console.log('comp did mount',this.state.deck);
         resolve (deck);
       })
       .catch(error => reject(error));
     });
   };
-
 
   render() {
     return (

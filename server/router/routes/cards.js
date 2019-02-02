@@ -1,7 +1,22 @@
 module.exports = (app, db) => {
   // GET all cards
   app.get('/cards', (req, res) => {
-    db.cards.findAll()
+    db.cards
+      .findAll()
+      .then(cards => {
+        res.json(cards);
+      });
+  });
+
+  // GET all cards by deckId
+  app.get('/cards/:deckid', (req, res) => {
+    const deckId = req.params.deckid;
+    db.cards
+      .findAll({
+        where: {
+          deckid: deckId,
+        }
+      })
       .then(cards => {
         res.json(cards);
       });
@@ -11,9 +26,12 @@ module.exports = (app, db) => {
   app.get('/cards/:id', (req, res) => {
     const cardid = req.params.id;
 
-    db.cards.find({
-      where: { cardid }
-    })
+    db.cards
+      .find({
+        where: {
+          cardid
+        }
+      })
       .then(card => {
         res.json(card);
       });
@@ -25,11 +43,12 @@ module.exports = (app, db) => {
     const question = req.body.question;
     const answer = req.body.answer;
 
-    db.cards.create({
-      deckid,
-      question,
-      answer
-    })
+    db.cards
+      .create({
+        deckid,
+        question,
+        answer
+      })
       .then(newCard => {
         res.json(newCard);
       })
@@ -40,9 +59,12 @@ module.exports = (app, db) => {
     const cardid = req.params.id;
     const incomingUpdates = req.body.updates;
 
-    db.cards.find({
-      where: { cardid }
-    })
+    db.cards
+      .find({
+        where: {
+          cardid
+        }
+      })
       .then(card => {
         return card.update(incomingUpdates)
       })
@@ -55,9 +77,12 @@ module.exports = (app, db) => {
   app.delete('/cards/:id', (req, res) => {
     const cardid = req.params.id;
 
-    db.cards.destroy({
-      where: { cardid }
-    })
+    db.cards
+      .destroy({
+        where: {
+          cardid
+        }
+      })
       .then(deletedCard => {
         res.json(deletedCard);
       });
