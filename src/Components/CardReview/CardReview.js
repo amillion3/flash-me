@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 
-import ButtonCardRating from '../Buttons/ButtonCardRating/ButtonCardRating';
 import CRAnswer from '../CardReview/CRAnswer/CRAnswer';
 import CRQuestion from '../CardReview/CRQuestion/CRQuestion';
 import CRRatingContainer from '../CardReview/CRRatingContainer/CRRatingContainer';
@@ -22,26 +21,33 @@ class CardReview extends Component {
   }
 
   componentDidMount() {
-    console.log('comp did mount, 1st');
     return new Promise((resolve, reject) => {
       RequestsCards.GetAllByDeckId(this.state.currentDeckId)
       .then(deck => {
         this.setState({ deck })
-        console.log('CardReview, comp did mount',this.state.deck);
         resolve (deck);
       })
       .catch(error => reject(error));
     });
   };
 
-  clickNext = () => {
-    console.log('clicked', this.state.currentDeckPosition);
+  clickNext = rating => {
+    // rating param is not used now, but should be eventually
     let currentDeckPosition = this.state.currentDeckPosition;
     currentDeckPosition++;
-
-    this.setState({
-      currentDeckPosition
-    })
+    if (currentDeckPosition < this.state.deck.length) {
+      // There are still cards to review in this deck
+      this.setState({
+        currentDeckPosition,
+        showQuestion: true,
+      })
+    } else {
+      // All cards have been reviewed in this deck, start over.
+      this.setState({
+        currentDeckPosition: 0,
+        showQuestion: true,
+      })
+    }
   };
 
   render() {
@@ -78,9 +84,9 @@ class CardReview extends Component {
         }
 
 
-        <CRRatingContainer>
-
-          {/* <ButtonCardRating></ButtonCardRating> */}
+        <CRRatingContainer
+          callbackFromCardReview={this.clickNext}
+        >
 
         </CRRatingContainer>
 
