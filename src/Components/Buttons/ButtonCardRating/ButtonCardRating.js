@@ -6,7 +6,9 @@ import './ButtonCardRating.scss';
 const ButtonCardRating = () => {
   return (
     <Fragment>
-      <MDBBtn color="primary" id={this.props.rating}>
+      <MDBBtn
+        color="primary"
+        id={this.props.rating} >
         {this.props.rating}
       </MDBBtn>
     </Fragment>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const GetSingle = id => {
-  const apiPath = `http://localhost:8000/cards/${id}`;
+const GetSingle = () => {
+  const apiPath = `http://localhost:8000/cards/`;
   return new Promise((resolve, reject) => {
     axios
       .get(apiPath)
@@ -14,6 +14,16 @@ const GetSingle = id => {
 
 const GetAll = () => {
   const apiPath = `http://localhost:8000/cards`;
+  return new Promise((resolve, reject) => {
+    axios
+      .get(apiPath)
+      .then(cards => resolve (cards.data))
+      .catch(error => reject(error));
+    });
+};
+
+const GetAllByDeckId = deckId => {
+  const apiPath = `http://localhost:8000/cards/${deckId}`;
   return new Promise((resolve, reject) => {
     axios
       .get(apiPath)
@@ -61,5 +71,10 @@ const UpdateCard = (input, id) => {
 }
 
 export default {
-  GetSingle, GetAll, AddCard, DeleteCard, UpdateCard
+  GetSingle,
+  GetAll,
+  GetAllByDeckId,
+  AddCard,
+  DeleteCard,
+  UpdateCard
 };
