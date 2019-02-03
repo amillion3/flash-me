@@ -1,5 +1,8 @@
 import React, { Component, Fragment } from 'react';
 
+import TableCards from './TableCards/TableCards';
+import TableDecks from './TableDecks/TableDecks';
+
 import './DeckManagement.scss';
 
 class DeckManagement extends Component {
@@ -8,8 +11,16 @@ class DeckManagement extends Component {
   }
 
   render() {
+    console.log(this.props.auth);
+    console.log(this.props.auth.auth0.client.baseOptions.clientID);
     return (
-      <h1>Deck Management</h1>
+      <Fragment>
+        <h1>Deck Management</h1>
+        <TableDecks>
+
+        </TableDecks>
+
+      </Fragment>
     );
   }
 }
