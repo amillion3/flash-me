@@ -28,8 +28,13 @@ module.exports = function(sequelize, DataTypes) {
     deckscurrentlyused: {
       type: DataTypes.STRING(255),
       allowNull: true
-    }
-  }, {
+    },
+    authid: {
+      type: DataTypes.STRING(45),
+      allowNull: true
+    },
+  },
+  {
     tableName: 'users',
     timestamps: false,
   });

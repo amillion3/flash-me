@@ -4,6 +4,7 @@ const routes = [
   require('./routes/history'),
   require('./routes/userdeckpairing'),
   require('./routes/users'),
+  require('./routes/userauth'),
 ];
 
 
