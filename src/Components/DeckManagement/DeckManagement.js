@@ -52,7 +52,8 @@ class DeckManagement extends Component {
         </Fragment>
         {
           manageDecks ?
-            <TableDecks>
+            <TableDecks
+              deckIds={this.state.deck} >
 
             </TableDecks>
           : null
