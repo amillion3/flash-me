@@ -22,7 +22,6 @@ class DeckManagement extends Component {
       UserDeckPairingRequest.GetDecksByUserId(this.state.currentUserId)
       .then(deck => {
         this.setState({ deck })
-        console.log('DECKKKKKKKKKKKKKKKK, ',this.state.deck);
         resolve (deck);
       })
       .catch(error => reject(error));
