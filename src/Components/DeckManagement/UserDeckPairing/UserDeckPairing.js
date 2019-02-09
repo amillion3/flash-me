@@ -1,19 +1,18 @@
 import React, { Component, Fragment } from 'react';
 
-import './Settings.scss';
+import './UserDeckPairing.scss';
 
-class Settings extends Component {
-  state = {
-
-  }
+class UserDeckPairing extends Component {
 
   render() {
+
     return (
       <Fragment>
+
 
       </Fragment>
     );
   }
 }
 
-export default Settings;
+export default UserDeckPairing;

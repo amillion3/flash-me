@@ -21,6 +21,19 @@ module.exports = (app, db) => {
       });
   });
 
+  // GET one deck by id, for editing
+  app.get('/decks/edit/:id', (req, res) => {
+    const deckid = req.params.id;
+    console.log('decks.js');
+
+    db.decks.find({
+      where: { deckid }
+    })
+      .then(deck => {
+        res.json(deck);
+      });
+  });
+
   // POST single deck
   app.post('/decks', (req, res) => {
     const name = req.body.name;
@@ -29,15 +42,6 @@ module.exports = (app, db) => {
     const deckcreatorid = req.body.deckcreatorid;
     const datecreated = moment();
     const datelastmodified = datecreated;
-
-    // db.userdeckpairing.create({
-    //   userdeckpairingid: 0,
-    //   userid: deckcreatorid,
-    //   deckid: 0,
-    // })
-    //   .then(newPairing => {
-    //     res.json(newPairing);
-    //   })
 
     db.decks.create({
       name,
@@ -53,9 +57,11 @@ module.exports = (app, db) => {
   });
 
   // PATCH single deck
-  app.patch('/decks/:id', (req, res) => {
+  app.patch('/decks/edit/:id', (req, res) => {
     const deckid = req.params.id;
     const incomingUpdates = req.body.updates;
+    console.log(deckid)
+    console.log(incomingUpdates)
 
     db.decks.find({
       where: { deckid }

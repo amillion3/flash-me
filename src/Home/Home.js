@@ -26,12 +26,12 @@ class Home extends Component {
             <Fragment>
               <h4>
                 You are not logged in! Please{' '}
-                <a
+                <button
                   style={{ cursor: 'pointer' }}
                   onClick={this.login.bind(this)}
                 >
                   Log In
-                </a>
+                </button>
                 {' '}to continue.
               </h4>
             </Fragment>

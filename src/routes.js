@@ -12,6 +12,7 @@ import Dashboard from './Components/Dashboard/Dashboard';
 import DeckManagement from './Components/DeckManagement/DeckManagement';
 import Home from './Home/Home';
 import Settings from './Components/Settings/Settings';
+import TableDecks from './Components/DeckManagement/TableDecks/TableDecks';
 
 const auth = new Auth();
 
@@ -37,6 +38,7 @@ export const makeMainRoutes = () => {
             <Route path="/about" render={(props) => <About auth={auth} {...props} />} />
             <Route path="/cardreview" render={(props) => <CardReview auth={auth} {...props} />} />
             <Route path="/dashboard" render={(props) => <Dashboard auth={auth} {...props} />} />
+            <Route path="/decks" render={(props) => <TableDecks auth={auth} {...props} />} />
             <Route path="/deckmanagement" render={(props) => <DeckManagement auth={auth} {...props} />} />
             <Route path="/settings" render={(props) => <Settings auth={auth} {...props} />} />
             <Route path="/callback" render={(props) => {
