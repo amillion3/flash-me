@@ -11,20 +11,26 @@ class TableDecks extends Component {
 
   componentDidMount() {
 
-    // Requests.GetSingle(1)
-    // .then(response => {
-    //   this.setState({data: response})
-    // })
+    if(this.props.data){
+      console.log('data89898989', this.props.data)
+    }
   }
 
-  static getDerivedStateFromProps(props, state) {
-    if (state.data !== props.data) {
-      console.log('static', this.props.data)
-      this.setState({data:this.props.data})
-       }
-    // when null is returned no update is made to the state
-    return null;
+  shouldComponentUpdate(nextProps, nextState) {
+    let shouldUpdate = this.props.data !== nextProps.data;
+    if (shouldUpdate) {
+      console.log('should comp update')
+    }
   }
+
+  // static getDerivedStateFromProps(props) {
+  //   if (props) {
+  //     console.log('static', this.props.data)
+  //     this.setState({data:this.props.data})
+  //      }
+  //   // when null is returned no update is made to the state
+  //   return null;
+  // }
 
   render() {
     const {data} = this.props;
@@ -39,9 +45,5 @@ class TableDecks extends Component {
     );
   }
 }
-
-TableDecks.propTypes = {
-  data: PropTypes.object,
-};
 
 export default TableDecks;

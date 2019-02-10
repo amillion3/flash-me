@@ -13,9 +13,12 @@ class DeckManagement extends Component {
   state = {
     manageDecks: false,
     manageCards: false,
+    editDecks: false,
+    editCards: false,
     currentUserId: 1,
     usersDeckIds: [], // just the ids, via props
     usersDecks: [], // full decks, from API
+    selectedDeck: null,
     deck: [],
     columns: [
       {
@@ -100,11 +103,20 @@ class DeckManagement extends Component {
   }
 
   clickEdit = e => {
-    console.log('edit', e.target.id);
+    this.setState({
+      editDecks: true,
+      editCards: false,
+      manageDecks: false,
+      manageCards: false,
+      selectedDeck: e.target.id,
+    })
+    console.log('edit, e.target.id=', e.target.id);
+    console.log(this.state)
+
   }
 
   render() {
-    const { manageDecks, manageCards } = this.state;
+    const { manageDecks, manageCards, selectedDeck } = this.state;
 
 
     const RowForDeck = this.state.rows.map(d => {
@@ -149,8 +161,7 @@ class DeckManagement extends Component {
             Manage Cards
           </MDBBtn>
         </Fragment>
-        {
-
+        { // Show `decks` table, for edit/delete
           manageDecks ?
           <Fragment>
             <h2 className="text-center deck-mgmt-title">Decks</h2>
@@ -184,11 +195,17 @@ class DeckManagement extends Component {
         </Fragment>
           : null
         }
-        {
+        { // Show `cards` table, for edit/delete
           manageCards ?
             <TableCards>
 
             </TableCards>
+          : null
+        }
+        { selectedDeck ?
+          <TableDecks data={this.state.selectedDeck}>
+
+          </TableDecks>
           : null
         }
 
