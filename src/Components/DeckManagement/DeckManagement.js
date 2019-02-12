@@ -118,7 +118,6 @@ class DeckManagement extends Component {
   render() {
     const { manageDecks, manageCards, selectedDeck } = this.state;
 
-
     const RowForDeck = this.state.rows.map(d => {
       console.log('d-----',d)
       return(
@@ -132,7 +131,7 @@ class DeckManagement extends Component {
           <td className='td-decks'>{d.datelastmodified}</td>
           <td className='td-decks'>
           <MDBNavLink to={"/decks/edit/:" + d.deckid} data={d}>
-            <MDBIcon icon="edit" size="2x" id={d.deckid} onClick={this.clickEdit}/>
+            <MDBIcon icon="edit" size="2x" id={d.deckid} onClick={this.clickEdit} data={d}/>
           </MDBNavLink>
           </td>
           <td className='td-decks'>
@@ -202,7 +201,8 @@ class DeckManagement extends Component {
             </TableCards>
           : null
         }
-        { selectedDeck ?
+        { // Show single `deck` for editing
+          selectedDeck ?
           <TableDecks data={this.state.selectedDeck}>
 
           </TableDecks>
