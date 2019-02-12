@@ -122,6 +122,13 @@ class DeckManagement extends Component {
     })
   }
 
+  callbackShowModal = () => {
+    this.setState({
+      showModalEdit: false,
+      showModalDelete: false,
+    })
+  }
+
   render() {
     const { manageDecks, manageCards, selectedDeck } = this.state;
 
@@ -137,11 +144,7 @@ class DeckManagement extends Component {
           <td className='td-decks'>{d.datecreated}</td>
           <td className='td-decks'>{d.datelastmodified}</td>
           <td className='td-decks'>
-          <MDBIcon icon="edit" size="2x" id={d.deckid} onClick={this.clickEdit} data={d}/>
-
-          {/* <MDBNavLink to={"/decks/edit/:" + d.deckid} data={d}>
             <MDBIcon icon="edit" size="2x" id={d.deckid} onClick={this.clickEdit} data={d}/>
-          </MDBNavLink> */}
           </td>
           <td className='td-decks'>
             <MDBIcon id={d.deckid} icon="trash" size="2x" onClick={this.toggle}/>
@@ -154,7 +157,10 @@ class DeckManagement extends Component {
       <Fragment>
         {
           this.state.showModalEdit ?
-            <ModalEdit data={this.state.selectedDeck}></ModalEdit>
+            <ModalEdit
+              data={this.state.selectedDeck}
+              callbackShowModal={this.callbackShowModal}
+            ></ModalEdit>
           : null
 
         }
@@ -217,13 +223,7 @@ class DeckManagement extends Component {
             </TableCards>
           : null
         }
-        { // Show single `deck` for editing
-          selectedDeck ?
-          <TableDecks data={this.state.selectedDeck}>
 
-          </TableDecks>
-          : null
-        }
 
       </Fragment>
     );
