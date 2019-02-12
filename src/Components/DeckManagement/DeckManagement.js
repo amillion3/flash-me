@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from 'react';
-import { MDBBtn, MDBTable, MDBTableHead, MDBIcon, MDBNavLink } from 'mdbreact';
+import { MDBBtn, MDBTable, MDBTableHead, MDBIcon } from 'mdbreact';
 
 import TableCards from './TableCards/TableCards';
 import TableDecks from './TableDecks/TableDecks';
 import UserDeckPairingRequest from '../../Requests/UserDeckPairing';
 import CardsRequest from '../../Requests/Cards';
 import DecksRequest from '../../Requests/Decks';
+import ModalEdit from './ModalEdit/ModalEdit';
 
 import './DeckManagement.scss';
 
@@ -13,12 +14,12 @@ class DeckManagement extends Component {
   state = {
     manageDecks: false,
     manageCards: false,
-    editDecks: false,
-    editCards: false,
+    showModalEdit: false,
+    showModalDelete: false,
     currentUserId: 1,
     usersDeckIds: [], // just the ids, via props
     usersDecks: [], // full decks, from API
-    selectedDeck: null,
+    selectedDeck: null, // passed to modal after click
     deck: [],
     columns: [
       {
@@ -103,16 +104,22 @@ class DeckManagement extends Component {
   }
 
   clickEdit = e => {
-    this.setState({
-      editDecks: true,
-      editCards: false,
-      manageDecks: false,
-      manageCards: false,
-      selectedDeck: e.target.id,
+    return new Promise((resolve, reject) => {
+      DecksRequest.GetSingle(e.target.id)
+      .then(deck => {
+        this.setState({
+          selectedDeck: deck,
+        })
+        return true;
+      })
+      .then(() => {
+        this.setState({
+          showModalEdit: true,
+        })
+        resolve();
+      })
+      .catch(err => reject(err));
     })
-    console.log('edit, e.target.id=', e.target.id);
-    console.log(this.state)
-
   }
 
   render() {
@@ -130,9 +137,11 @@ class DeckManagement extends Component {
           <td className='td-decks'>{d.datecreated}</td>
           <td className='td-decks'>{d.datelastmodified}</td>
           <td className='td-decks'>
-          <MDBNavLink to={"/decks/edit/:" + d.deckid} data={d}>
+          <MDBIcon icon="edit" size="2x" id={d.deckid} onClick={this.clickEdit} data={d}/>
+
+          {/* <MDBNavLink to={"/decks/edit/:" + d.deckid} data={d}>
             <MDBIcon icon="edit" size="2x" id={d.deckid} onClick={this.clickEdit} data={d}/>
-          </MDBNavLink>
+          </MDBNavLink> */}
           </td>
           <td className='td-decks'>
             <MDBIcon id={d.deckid} icon="trash" size="2x" onClick={this.toggle}/>
@@ -143,6 +152,13 @@ class DeckManagement extends Component {
 
     return (
       <Fragment>
+        {
+          this.state.showModalEdit ?
+            <ModalEdit data={this.state.selectedDeck}></ModalEdit>
+          : null
+
+        }
+
         <h1 className="deck-mgmt-header">Deck Management</h1>
         <Fragment>
           <MDBBtn

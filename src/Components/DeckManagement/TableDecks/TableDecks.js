@@ -9,15 +9,26 @@ class TableDecks extends Component {
     data: {},
   }
 
+  componentDidMount() {
+    console.log(this.props.data)
+  }
+
   render() {
     const {data} = this.props;
 
     return (
       <Fragment>
         <h1>edit</h1>
-        <h1>ac{data}</h1>
-        <h1>adfdfc{this.props.data}</h1>
-        <h1>{data.deckid}</h1>
+        {
+          data ?
+          <Fragment>
+            <h1>props!</h1>
+            <h2></h2>
+
+          </Fragment>
+          :
+          <h1>no props</h1>
+        }
       </Fragment>
     );
   }
