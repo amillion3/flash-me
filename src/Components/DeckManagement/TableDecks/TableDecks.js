@@ -1,6 +1,4 @@
 import React, { Fragment, Component } from 'react';
-import PropTypes from 'prop-types';
-import Requests from '../../../Requests/Decks'
 
 import './TableDecks.scss'
 

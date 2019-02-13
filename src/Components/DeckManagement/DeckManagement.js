@@ -1,12 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import { MDBBtn, MDBTable, MDBTableHead, MDBIcon } from 'mdbreact';
 
-import TableCards from './TableCards/TableCards';
-import TableDecks from './TableDecks/TableDecks';
 import UserDeckPairingRequest from '../../Requests/UserDeckPairing';
 import CardsRequest from '../../Requests/Cards';
 import DecksRequest from '../../Requests/Decks';
-import ModalEdit from './ModalEdit/ModalEdit';
+import ModalDeckEdit from './ModalDeckEdit/ModalDeckEdit';
 
 import './DeckManagement.scss';
 
@@ -14,8 +12,8 @@ class DeckManagement extends Component {
   state = {
     manageDecks: false,
     manageCards: false,
-    showModalEdit: false,
-    showModalDelete: false,
+    showModalDeckEdit: false,
+    showModalCardEdit: false,
     currentUserId: 1,
     usersDeckIds: [], // just the ids, via props
     usersDecks: [], // full decks, from API
@@ -93,28 +91,22 @@ class DeckManagement extends Component {
             resolve(true);
           })
         })
+        resolve(true);
       })
       .catch(error => reject(error))
     });
   };
 
-  clickDelete = e => {
-    console.log('delete', e.target.id);
-    // DecksRequest.DeleteDeck(e.target.id);
-  }
-
-  clickEdit = e => {
+  clickDeckEdit = e => {
     return new Promise((resolve, reject) => {
       DecksRequest.GetSingle(e.target.id)
       .then(deck => {
-        this.setState({
-          selectedDeck: deck,
-        })
+        this.setState({ selectedDeck: deck });
         return true;
       })
       .then(() => {
         this.setState({
-          showModalEdit: true,
+          showModalDeckEdit: true,
         })
         resolve();
       })
@@ -124,13 +116,13 @@ class DeckManagement extends Component {
 
   callbackShowModal = () => {
     this.setState({
-      showModalEdit: false,
-      showModalDelete: false,
+      showModalDeckEdit: false,
+      showModalCardEdit: false,
     })
   }
 
   render() {
-    const { manageDecks, manageCards, selectedDeck } = this.state;
+    const { manageDecks, manageCards } = this.state;
 
     const RowForDeck = this.state.rows.map(d => {
       console.log('d-----',d)
@@ -144,10 +136,7 @@ class DeckManagement extends Component {
           <td className='td-decks'>{d.datecreated}</td>
           <td className='td-decks'>{d.datelastmodified}</td>
           <td className='td-decks'>
-            <MDBIcon icon="edit" size="2x" id={d.deckid} onClick={this.clickEdit} data={d}/>
-          </td>
-          <td className='td-decks'>
-            <MDBIcon id={d.deckid} icon="trash" size="2x" onClick={this.toggle}/>
+            <MDBIcon icon="edit" size="2x" id={d.deckid} onClick={this.clickDeckEdit} data={d}/>
           </td>
         </tr>
       )
@@ -156,11 +145,11 @@ class DeckManagement extends Component {
     return (
       <Fragment>
         {
-          this.state.showModalEdit ?
-            <ModalEdit
+          this.state.showModalDeckEdit ?
+            <ModalDeckEdit
               data={this.state.selectedDeck}
               callbackShowModal={this.callbackShowModal}
-            ></ModalEdit>
+            ></ModalDeckEdit>
           : null
 
         }
@@ -205,7 +194,6 @@ class DeckManagement extends Component {
                   <th className="th-sm th-decks">Date Last Modified
                   </th>
                   <th className="th-sm th-decks"></th>
-                  <th className="th-sm th-decks"></th>
                 </tr>
               </MDBTableHead>
               <tbody className="">
@@ -218,9 +206,7 @@ class DeckManagement extends Component {
         }
         { // Show `cards` table, for edit/delete
           manageCards ?
-            <TableCards>
-
-            </TableCards>
+          null
           : null
         }
 
