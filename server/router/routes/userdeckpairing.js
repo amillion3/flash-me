@@ -7,6 +7,19 @@ module.exports = (app, db) => {
       });
   });
 
+  // GET all by userid
+  app.get('/userdeckpairing/:userid', (req, res) => {
+    db.userdeckpairing
+    .findAll({
+      where: {
+        userid: req.params.userid,
+      }
+    })
+    .then(userdeckpairings => {
+      res.json(userdeckpairings);
+    });
+  });
+
   // GET single userdeckpairing
   app.get('/userdeckpairing/:id', (req, res) => {
     const userdeckpairingid = req.params.id;

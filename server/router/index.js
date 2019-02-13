@@ -1,9 +1,11 @@
 const routes = [
   require('./routes/cards'),
   require('./routes/decks'),
+  require('./routes/deckmanagement'),
   require('./routes/history'),
   require('./routes/userdeckpairing'),
   require('./routes/users'),
+  require('./routes/userauth'),
 ];
 
 
